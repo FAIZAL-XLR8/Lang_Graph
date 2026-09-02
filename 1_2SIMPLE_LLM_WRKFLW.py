@@ -35,4 +35,5 @@ workflow = graph.compile()
 initial_state = {'ques' : 'Who is Kira from Death Note','ans' : ''}
 #execute the graph
 final_state = workflow.invoke(initial_state)
-print(final_state)
+print(final_state['ques'])
+print(final_state['ans'])
