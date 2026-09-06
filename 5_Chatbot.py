@@ -27,8 +27,17 @@ graph.add_node('chat_node', chat_node)
 graph.add_edge(START, 'chat_node')
 graph.add_edge('chat_node', END)
 workflow = graph.compile()
-initial_state = {
-    'messages' : [HumanMessage('What is the capital of India')]
+# initial_state = {
+#     'messages' : [HumanMessage('What is the capital of India')]
+# }
+while True :
+    user_input = input("tell me how may I help?")
+    print(user_input)
+    if user_input.strip().lower() in ['exit', 'bye', 'end']:
+        break
+    initial_state = initial_state = {
+    'messages' : [HumanMessage(content=user_input)]
 }
-res = workflow.invoke(initial_state)
-print(res['messages'][-1].content)
+    workflow.invoke(initial_state)
+    res = workflow.invoke(initial_state)
+    print(res['messages'][-1].content)
