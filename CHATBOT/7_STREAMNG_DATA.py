@@ -12,8 +12,9 @@ chat_model = ChatHuggingFace(
        repo_id="meta-llama/Llama-3.1-8B-Instruct",
         task="text-generation",
         max_new_tokens=100,
-    )
+    ) 
 )
+
 conn = sqlite3.connect(database='chat_bot.db',check_same_thread=False)
 checkpoint = SqliteSaver(conn=conn)
 class chatState(TypedDict):
@@ -38,23 +39,25 @@ workflow = graph.compile(checkpointer=checkpoint)
 configuration = {
     "configurable" : {"thread_id" : "1"}
 }
-while True :
-    user_input = input("tell me how may I help?")
-    print(user_input)
-    if user_input.strip().lower() in ['exit', 'bye', 'end']:
-        break
-    initial_state = {
-    'messages' : [HumanMessage(content=user_input)]
-    }
-# }
-#     workflow.invoke(initial_state)
-#     res = workflow.invoke(initial_state)
-#     print(res['messages'][-1].content)
-    for message_chunk, metadata in workflow.stream(
-    initial_state,
-     config=configuration,
-    stream_mode="messages"
-    ):
-        if message_chunk.content:
-            print(message_chunk.content, end="", flush=True)
-    print()  # once, after the loop, not inside it
+# while True :
+#     user_input = input("tell me how may I help?")
+#     print(user_input)
+#     if user_input.strip().lower() in ['exit', 'bye', 'end']:
+#         break
+#     initial_state = {
+#     'messages' : [HumanMessage(content=user_input)]
+#     }
+# # }
+# #     workflow.invoke(initial_state)
+# #     res = workflow.invoke(initial_state)
+# #     print(res['messages'][-1].content)
+#     for message_chunk, metadata in workflow.stream(
+#     initial_state,
+#      config=configuration,
+#     stream_mode="messages"
+#     ):
+#         if message_chunk.content:
+#             print(message_chunk.content, end="", flush=True)
+#     print()  # once, after the loop, not inside it
+for item in checkpoint.list(None):
+    print(item)
