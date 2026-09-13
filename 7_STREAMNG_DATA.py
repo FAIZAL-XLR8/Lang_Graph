@@ -47,10 +47,11 @@ while True :
 #     res = workflow.invoke(initial_state)
 #     print(res['messages'][-1].content)
     for message_chunk, metadata in workflow.stream(
-    initial_state,
-    stream_mode="messages"
+        initial_state,
+        config=configuration,
+        stream_mode="messages"
     ):
         if message_chunk.content:
             print(message_chunk.content, end="", flush=True)
 
-print()  # once, after the loop, not inside it
+    print()  # print newline after each assistant response
