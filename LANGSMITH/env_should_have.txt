@@ -1,0 +1,7 @@
+HUGGINGFACEHUB_API_TOKEN='this_huggingface_face_token'
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_ENDPOINT='https://api.smith.langchain.com'
+LANGCHAIN_API_KEY='langsmith_api_key'
+LANGCHAIN_PROJECT='project_name_for_langsmith'
+GOOGLE_API_KEY='this_google_gemini_api_key'
+# --------------------------------------
