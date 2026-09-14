@@ -32,7 +32,7 @@ workflow = graph.compile(checkpointer=checkpoint)
 #     'messages' : [HumanMessage('What is the capital of India')]
 # }
 configuration = {
-    "configurable" : {"thread_id" : "1"}
+    "configurable" : {"thread_id" : "1"} #thread id is kinda like a unique session id
 }
 while True :
     user_input = input("tell me how may I help?")

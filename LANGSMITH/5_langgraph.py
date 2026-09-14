@@ -54,7 +54,7 @@ class UPSCState(TypedDict, total=False):
     overall_feedback: str
     individual_scores: Annotated[List[int], operator.add]  # merges parallel lists
     avg_score: float
-
+# @traceable(name='trace_name', tags=['',''], metadata={'key' : 'value'})
 # ---------- Traced node functions ----------
 @traceable(name="evaluate_language_fn", tags=["dimension:language"], metadata={"dimension": "language"})
 def evaluate_language(state: UPSCState):
