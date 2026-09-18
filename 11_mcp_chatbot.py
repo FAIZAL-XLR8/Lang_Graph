@@ -60,7 +60,10 @@ async def build_graph():
 
     # defining graph connections
     graph.add_edge(START, "chat_node")
-    graph.add_conditional_edges("chat_node", tools_condition)
+    graph.add_conditional_edges("chat_node", tools_condition, {
+        "tools":tool_node,
+        END:END
+    })#this line means if tool_condition returns tools go to tool_node and if it returns end go to END
     graph.add_edge("tools", "chat_node")
 
     chatbot = graph.compile()
