@@ -87,13 +87,15 @@ def chat_node(state: chatState) -> dict:
 graph = StateGraph(chatState)
 graph.add_node("chat_node", chat_node)
 graph.add_node("tools_node", tools_node)
-
+#usually scene is the conditional edges returns a string which node
+#to go to after fullfillment of the condition --> string is the name of the node
 # Edges
 graph.add_edge(START, "chat_node")
 graph.add_conditional_edges("chat_node", tools_condition, {
     "tools": "tools_node",
     END: END
-})
+})#tools_condition is a conditional routing function
+# (a prebuilt helper in langgraph.prebuilt).
 graph.add_edge("tools_node", "chat_node")
 
 # Compile graph with checkpointer
