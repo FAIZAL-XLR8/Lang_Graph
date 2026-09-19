@@ -1,5 +1,10 @@
 # backend.py
-"""Human->>Graph: "Buy 10 shares of TSLA"
+"""
+Use interrupt and chat.invoke(command(resume=decision))
+HITL is acheievd using keyword interrupt(interruption message) ,message is stored in response
+then from response we check if any interruptions if any then ask from user for input
+then resume the chat with another invocation with decision as input from user 
+Human->>Graph: "Buy 10 shares of TSLA"
     Graph->>Tool: Execute purchase_stock(TSLA, 10)
     Tool->>Graph: interrupt("Approve buying 10 shares?")
     Graph->>Memory: Save current state & pause point
